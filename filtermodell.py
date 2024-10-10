@@ -234,7 +234,8 @@ main()
 
 
 # Takk Copilot
-""" Lag et micropython-skript som følger disse stegene:
+""" 
+Lag et micropython-skript som følger disse stegene:
 
 Spørr om brukeren skal lage butterworth eller chebyshev
 Spørre brukeren om fp, fs, Dripple, Ds
@@ -249,4 +250,39 @@ Regn ut Omega3dB = ((10⁽0.3) - 1) / (epsilon ^2)) ^ (1 / (2*pi)
 implementer chebyshev
 1. Regn ut epsilon = sqrt(10 ^(Dripple / 10) -1 )
 2. n = (acosh( (10 ^ (Ds / 20) / epsilon) )) / (acosh(OmegaS)) ) og regn opp til nærmeste heltall
-3. Regn ut Omega3dB = cosh( (acosh( sqrt(10 ^ (0.3) - 1) / epsilon ) / n) ) """
+3. Regn ut Omega3dB = cosh( (acosh( sqrt(10 ^ (0.3) - 1) / epsilon ) / n) ) 
+"""
+
+""" 
+On my casio fx cg50 this thros an syntax error when using micropython
+ """
+
+
+""" 
+implementer chebyshev
+
+Regn ut epsilon = sqrt(10 ^(Dripple / 10) -1 )
+n = (acosh( (10 ^ (Ds / 20) / epsilon) )) / (acosh(OmegaS)) ) og regn opp til nærmeste heltall
+Regn ut Omega3dB = cosh( (acosh( sqrt(10 ^ (0.3) - 1) / epsilon ) / n) )
+ """
+
+ """ cg50 gives error "no attribute acosh" """
+
+
+ """ 
+ Hvis lavpass, gjør følgende:
+
+Få fra bruker w0, Q, og R
+
+Regn ut
+
+C2_temp = 1 / (2 * R * w0 * Q)
+Be bruker oppgi C2 han ønsker i pF (10 ^ -12)
+Regn ut C1_temp = 4 * Q ^2 * C2
+Be bruker oppgi C1
+n = C1 / C2
+k = n / (2 * Q ^2) - 1
+m = k + sqrt(k ^2 - 1)
+R2 = 1 / (sqrt(m*n) * w0 * C2)
+R1 = m * R2
+  """
