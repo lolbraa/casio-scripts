@@ -92,7 +92,7 @@ def finnApproksimasjon(passType):
 
 
 def finnKRC(passType):
-    print("\nFinn verdier for et KRC-filter,\nogså kalt Sallen-Key-filter.\nOBS: Ingen forsterkning, K.")
+    print("\nFinn verdier for et KRC-filter,\nogså kalt Sallen-Key-filter.\nOBS: Ingen forsterkning, k.")
     
     # spør etter orden n
     while True:
@@ -106,7 +106,7 @@ def finnKRC(passType):
             print("Ugyldig input. Vennligst skriv inn et heltall.")
 
     if passType == '1': # Lavpass
-        #print("\n")
+        print("\nBeregner lavpass-krets\n av orden ", n, ".")
         for i in range(1, int(n/2) + 1):
             print("\nRegn ut T", i)
             finnKRC_LP_2ordens(i)
@@ -115,11 +115,20 @@ def finnKRC(passType):
             print("Regn ut 1. ordens T", n)
             finnKRC_LP_1ordens()
         
+
     elif passType == '2': # Høypass
-        print("\n")
-        for i in range(1, n + 1):
-            print("Regn ut T", i)
-            finnKRC_HP(i)
+        print("\nBeregner høypass-krets\nav orden", n)
+        print("Bruker C = C1 = C2,\nog at C og w0 er like i alle Tn.")
+        C = float(input("Velg Ci pF (10^-12): ")) * (10 ** -12)
+        w0 = float(input("Skriv inn w0\ni rad/s: "))
+        for i in range(1, int(n/2) + 1):
+            print("\nRegn ut T", i)
+            finnKRC_HP_2ordens(C,i)
+
+        if n % 2 == 1: # hvis n er oddetall, må vi regne ut en ekstra 1. ordens
+            print("Regn ut 1. ordens T", n)
+            finnKRC_HP_1ordens()
+
 
     elif passType == '3': # Båndpass
         print("\n")
@@ -132,26 +141,27 @@ def finnKRC(passType):
 
 
 ####################### DETALJ-FUNKSJONER #######################
+
 def finnKRC_LP_2ordens(i):
-    w0 = float(input("Skriv inn w0: "))
+    w0 = float(input("Skriv inn w0\ni rad/s: "))
     Q = float(input("Skriv inn Q: "))
-    R = float(input("Skriv inn R: "))
+    R = float(input("Velg R\ni ohm(ikke kilo): "))
     
     C2_temp = 1 / (2 * R * w0 * Q)
-    print("C2_temp: ", C2_temp)
+    print("\nC2_temp: ", C2_temp)
     
-    C2 = float(input("Oppgi ønsket C2 i pF (10^-12): ")) * (10 ** -12)
+    C2 = float(input("Oppgi ønsket C2\ni pF (10^-12): ")) * (10 ** -12)
     C1_temp = 4 * (Q ** 2) * C2
-    print("C1_temp: ", C1_temp)
+    print("\nC1_temp: ", C1_temp)
     
-    C1 = float(input("Oppgi ønsket C1 i pF (10^-12): "))* (10 ** -12)
+    C1 = float(input("Oppgi ønsket C1\ni pF (10^-12): "))* (10 ** -12)
     n = C1 / C2
     k = n / (2 * (Q ** 2)) - 1
     m = k + math.sqrt((k ** 2) - 1)
     R2 = 1 / (math.sqrt(m * n) * w0 * C2)
     R1 = m * R2
     
-    print("R1: ", R1)
+    print("\nR1: ", R1)
     print("R2: ", R2)
 
     # hvis høyere verbosity, skriv ut alle variabler
@@ -165,11 +175,42 @@ def finnKRC_LP_2ordens(i):
         print("k: ", k)
         print("m: ", m)
 
+    print("\nVERIFIKASJON: ")
+    print("w0_reell: ", 1 / (sqrt(R1 * R2) * C))
+    print("Q_reell: ", sqrt(R1 * R2) / 2)
+
 def finnKRC_LP_1ordens():
     print("Funksjonen er ikke implementert ennå.")
 
 
-def finnKRC_HP(i):
+def finnKRC_HP_2ordens(w0, C, i):
+    Q = float(input("Skriv inn Q: "))
+    
+    R1_temp = 1 / (2 * Q * w0 * C)
+    print("\nR1_temp: ", R1_temp)
+    R1 = float(input("Oppgi ønsket R1\ni ohm: "))
+
+    R2_temp = (2 * Q) / (w0 * C)
+    print("\nR2_temp: ", R2_temp)
+    R2 = float(input("Oppgi ønsket R2: "))
+    
+    print("\nR1: ", R1)
+    print("R2: ", R2)
+
+    # hvis høyere verbosity, skriv ut alle variabler
+    if verbosity == '2':
+        print("w0: ", w0)
+        print("Q: ", Q)
+        print("R1: ", R1)
+        print("R2: ", R2)
+        print("C: ", C)
+    
+    print("\nVERIFIKASJON: ")
+    print("w0_reell: ", 1 / (math.sqrt(R1 * R2) * C))
+    print("Q_reell: ", math.sqrt(R1 / R2) / 2)
+
+
+def finnKRC_HP_1ordens():
     print("Funksjonen er ikke implementert ennå.")
 
 
