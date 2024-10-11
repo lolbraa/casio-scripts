@@ -36,5 +36,5 @@ for x in range(9):
                     Rsist = RO
                     R1sist = R1
                     R2sist = R2
-print(round(Rsist,2),"Ω <- ", R1sist, "Ω  ||", R2sist,"Ω. og feil med", round(((Rsist - R)**2)**(1/2),1), "Ω = " , round(100 * ((Rsist - R)**2)**(1/2) / R,4), "% feil")               
+print(round(Rsist,2),"ohm\n <- ", R1sist, "||", R2sist,"ohm.\nFeil med", round(((Rsist - R)**2)**(1/2),1), "ohm\n= " , round(100 * ((Rsist - R)**2)**(1/2) / R,4), "% feil")               
         
