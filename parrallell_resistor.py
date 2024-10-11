@@ -42,5 +42,5 @@ for x in range(iterasjoner):
                     Rsist = RO
                     R1sist = R1
                     R2sist = R2
-print("\n", round(Rsist,2),"ohm\n", R1sist, "||", R2sist,"ohm.\nFeil med", round(((Rsist - R)**2)**(1/2),1), "ohm\n(" , round(100 * ((Rsist - R)**2)**(1/2) / R,4), "% feil)")               
+print("\n", round(Rsist,2),"ohm lages med\n", R1sist, "||", R2sist,"ohm.\nFeil med", round(((Rsist - R)**2)**(1/2),1), "ohm\n(" , round(100 * ((Rsist - R)**2)**(1/2) / R,4), "% feil)")               
         
