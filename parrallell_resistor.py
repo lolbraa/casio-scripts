@@ -3,6 +3,13 @@
 Created on Thu Oct 10 16:47:56 2024
 
 @author: sonog
+
+TODO:
+- La brukeren bestemme hvor mange resistanser man skal ha i parallell.
+- Implementere flere serier.
+- Optimalisering: Legge inn en automatisk nedre grense for potenser man sjekker. Man trenger ikke å sjekke 10ohm når man skal finne 500ohm.
+- Optimalisering: Legge inn en sjekk for om den ønskede verdien er en perfekt E12 verdi. Hvis den er det, trenger man ikke dette skriptet, lol.
+
 """
 R =  float(input("Hvilken resistans\nonsker du?"))# hvilke verdi jeg vil ha
 
