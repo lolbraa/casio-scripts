@@ -8,6 +8,7 @@
 #   - Den kan kun vise 5 linjer, og det er ikke mulig å bla (?)
 #   - Den mangler mange python bibliotek, og implementasjonene av feks math er mangelfulle (mangler acosh og cosh)
 #   - Det er ikke mulig å formatere teksten, altså ingen farger og ikke mulig å bruke print(f"")
+#   - Støtter ikke æ, ø, å og mange andre utvidede ascii-tegn
 
 
 # INSTRUKS FOR EMULERING AV CASIO fx-CG50:
