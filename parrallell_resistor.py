@@ -2,7 +2,7 @@
 """
 Created on Thu Oct 10 16:47:56 2024
 
-@author: sonog
+@author: sonog / Sondre
 
 TODO:
 - La brukeren bestemme hvor mange resistanser man skal ha i parallell.
