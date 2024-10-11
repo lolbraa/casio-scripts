@@ -22,3 +22,16 @@ Dette er en repo for casio-skripts for elektro
  5. Når kalkulatoren er ejected, følg instruksene på skjermen og gå til Python i menyen.abs
  6. Finn filen og kjør den med EXE-knappen eller F1.
  Si ifra hvis noe ikke fungerer som forventet
+
+
+# TODO:
+ - 1. ordens KRC-filter, blant annet for feks. 3. ordens filtre
+   - finnKRC_LP_1ordens() er ikke implementert
+   - finnKRC_HP_1ordens() er ikke implementert
+ - Båndpassfilter
+   - finnKRC_BP(i) er ikke implementert
+ - Denomarlisering av (Omega0, Q)-tabeller 
+ - Denomarlisering av pol-tabeller 
+ - Oppslagg av resistansverdier basert på serier
+ - Oppslagg av kondensatorverdier basert på serier
+ - Oppslagg av resistansverdier som krever flere motstandere, i serie og paralell
