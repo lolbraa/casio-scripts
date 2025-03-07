@@ -4,50 +4,60 @@ Created on Thu Oct 10 16:47:56 2024
 
 @author: sonog / Sondre
 
-TODO:
+# TODO:
 - La brukeren bestemme hvor mange resistanser man skal ha i parallell.
 - Implementere flere serier.
 - Optimalisering: Legge inn en automatisk nedre grense for potenser man sjekker. Man trenger ikke å sjekke 10ohm når man skal finne 500ohm.
 - Optimalisering: Legge inn en sjekk for om den ønskede verdien er en perfekt E12 verdi. Hvis den er det, trenger man ikke dette skriptet, lol.
 
 """
-R =  float(input("Hvilken resistans\nonsker du?"))# hvilke verdi jeg vil ha
 
-#input("Hvilken serie?")
-R12 = [10,12,15,18,22,27,33,39,47,56,68,82]
+def finnParallell():
+    R =  float(input("Hvilken resistans\nonsker du? "))# hvilke verdi jeg vil ha
 
-# Hvor stor potens av E12 serien skal vi ga opp til?
-#iterasjoner = int(input("\nMaks verdi i E12.\nAnb. 10 for >1Mohm\n10^"))
-iterasjoner = len(str(round(R))) + 3
-print(iterasjoner)
+    #input("Hvilken serie?")
+    R12 = [10,12,15,18,22,27,33,39,47,56,68,82]
 
-Px = 1
-Py = 1
+    # Hvor stor potens av E12 serien skal vi ga opp til?
+    #iterasjoner = int(input("\nMaks verdi i E12.\nAnb. 10 for >1Mohm\n10^"))
+    iterasjoner = len(str(round(R))) + 3
+    #print(iterasjoner)
 
-R1 = 0
-R2 = 0
-RO = 0
-Rsist = 0
-R1sist = 0
-R2sist = 0
-
-feil = R**2
-Rny = 0
-
-for x in range(iterasjoner):
-    Px = Px * 10
+    Px = 1
     Py = 1
-    for y in range(iterasjoner):
-        Py = Py * 10
-        for i in range(12):
-            for n in range(12):
-                R1 = Px * R12[i]
-                R2 = Py * R12[n]
-                RO = R1 * R2 / (R1 + R2)
-                if (RO - R)**2 < feil:  
-                    feil = (RO - R)**2
-                    Rsist = RO
-                    R1sist = R1
-                    R2sist = R2
-print("\n", round(Rsist,2),"ohm lages med\n", R1sist, "||", R2sist,"ohm.\nFeil med", round(((Rsist - R)**2)**(1/2),1), "ohm\n(" , round(100 * ((Rsist - R)**2)**(1/2) / R,4), "% feil)")               
-        
+
+    R1 = 0
+    R2 = 0
+    RO = 0
+    Rsist = 0
+    R1sist = 0
+    R2sist = 0
+
+    feil = R**2
+    Rny = 0
+
+    for x in range(iterasjoner):
+        Px = Px * 10
+        Py = 1
+        for y in range(iterasjoner):
+            Py = Py * 10
+            for i in range(12):
+                for n in range(12):
+                    R1 = Px * R12[i]
+                    R2 = Py * R12[n]
+                    RO = R1 * R2 / (R1 + R2)
+                    if (RO - R)**2 < feil:  
+                        feil = (RO - R)**2
+                        Rsist = RO
+                        R1sist = R1
+                        R2sist = R2
+    print("\n", round(Rsist,2),"ohm lages med\n", R1sist, "||", R2sist,"ohm.\nFeil med", round(((Rsist - R)**2)**(1/2),1), "ohm\n(" , round(100 * ((Rsist - R)**2)**(1/2) / R,4), "% feil)")               
+
+# Kjører i loop for å regne flere resistanser etter hverandre
+while True:
+    finnParallell()
+    #print("\n\n")
+    if input("Avslutt eller regn igjen\n(0/1)") == "0":
+        break
+    else:
+        continue
