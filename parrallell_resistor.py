@@ -13,7 +13,7 @@ Created on Thu Oct 10 16:47:56 2024
 """
 
 def regnParallell():
-    n = int(input("Hvor mange resistorer\nskal du ha i parallell? "))
+    n = int(input("Hvor mange resistorer\ni parallell? "))
     for i in range(n):
         R = float(input("R" + str(i+1) + " = "))
         if i == 0:
