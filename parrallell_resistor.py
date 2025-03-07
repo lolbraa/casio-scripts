@@ -12,7 +12,17 @@ Created on Thu Oct 10 16:47:56 2024
 
 """
 
-def finnParallell():
+def regnParallell():
+    n = int(input("Hvor mange resistorer\nskal du ha i parallell? "))
+    for i in range(n):
+        R = float(input("R" + str(i+1) + " = "))
+        if i == 0:
+            Rsist = R
+        else:
+            Rsist = Rsist * R / (Rsist + R)
+    print("\n", round(Rsist,3), "ohm i parallell.")
+
+def finnOptimalParallell():
     R =  float(input("Hvilken resistans\nonsker du? "))# hvilke verdi jeg vil ha
 
     #input("Hvilken serie?")
@@ -55,9 +65,13 @@ def finnParallell():
 
 # Kjører i loop for å regne flere resistanser etter hverandre
 while True:
-    finnParallell()
+    if input("Regn parallell (0) eller\nfinn optimal E12 (1)\n(0/1)") == "0":
+        regnParallell()
+    else:
+        finnOptimalParallell()
+
     #print("\n\n")
-    if input("Avslutt eller regn igjen\n(0/1)") == "0":
+    if input("Avslutt (0) eller\nfortsett (1)\n(0/1)") == "0":
         break
     else:
         continue
